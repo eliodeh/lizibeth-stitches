@@ -1,0 +1,374 @@
+/* ── RESET ── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ── VARIABLES ── */
+:root {
+    --gold:       #D4AF37;
+    --black:      #000000;
+    --white:      #FFFFFF;
+    --light-grey: #F5F5F5;
+    --dark-grey:  #333333;
+}
+
+/* ── BASE ── */
+body {
+    font-family: 'Georgia', serif;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+/* ── NAVBAR ── */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background-color: var(--white);
+    border-bottom: 2px solid var(--gold);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--black);
+    letter-spacing: 2px;
+}
+
+.nav-logo img {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+/* ── HAMBURGER ── */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 2px;
+    background-color: var(--black);
+    transition: all 0.3s;
+}
+
+/* ── HERO ── */
+.hero {
+    height: 90vh;
+    background: linear-gradient(
+        rgba(0,0,0,0.4),
+        rgba(0,0,0,0.4)
+    ),
+    url('/static/images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    color: var(--white);
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+}
+
+.hero-content .tagline {
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+/* ── BUTTONS ── */
+.btn-gold {
+    background-color: var(--gold);
+    color: var(--black);
+    padding: 15px 40px;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    border: 2px solid var(--gold);
+}
+
+.btn-gold:hover {
+    background-color: transparent;
+    color: var(--gold);
+}
+
+.btn-outline {
+    border: 2px solid var(--gold);
+    color: var(--black);
+    padding: 10px 25px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.btn-outline:hover {
+    background-color: var(--gold);
+    color: var(--white);
+}
+
+/* ── FEATURED COLLECTIONS ── */
+.featured {
+    padding: 80px 60px;
+    background-color: var(--white);
+}
+
+.featured h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--black);
+    letter-spacing: 4px;
+}
+
+.featured h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: var(--gold);
+    margin: 15px auto 0;
+}
+
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.collection-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--gold);
+}
+
+.collection-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.collection-card:hover img {
+    transform: scale(1.05);
+}
+
+.card-info {
+    padding: 25px;
+    background-color: var(--white);
+    text-align: center;
+}
+
+.card-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--black);
+    letter-spacing: 2px;
+}
+
+.card-info p {
+    color: var(--dark-grey);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+/* ── CEO SECTION ── */
+.ceo-section {
+    padding: 80px 60px;
+    background-color: var(--light-grey);
+}
+
+.ceo-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.ceo-img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border: 4px solid var(--gold);
+}
+
+.ceo-text h2 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    letter-spacing: 3px;
+}
+
+.ceo-title {
+    color: var(--gold);
+    font-size: 1rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.ceo-message {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--dark-grey);
+    font-style: italic;
+}
+
+/* ── CONTACT BANNER ── */
+.contact-banner {
+    padding: 80px 60px;
+    background-color: var(--black);
+    text-align: center;
+    color: var(--white);
+}
+
+.contact-banner h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--gold);
+    letter-spacing: 4px;
+}
+
+.contact-banner p {
+    margin-bottom: 30px;
+    font-size: 1rem;
+    color: var(--white);
+}
+
+/* ── FOOTER ── */
+.footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 50px 60px 20px;
+    border-top: 2px solid var(--gold);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.footer-brand h3 {
+    font-size: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.footer-brand p {
+    font-style: italic;
+    color: var(--gold);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-contact p {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--dark-grey);
+    font-size: 0.8rem;
+    color: var(--dark-grey);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 20px 30px;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background-color: var(--white);
+        padding: 20px;
+        border-bottom: 2px solid var(--gold);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .collections-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ceo-content {
+        flex-direction: column;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+}

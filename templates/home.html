@@ -1,0 +1,45 @@
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Itua Stitches</h1>
+        <p class="tagline">"Elegance Redefined"</p>
+        <a href="/collections" class="btn-gold">View Collections</a>
+    </div>
+</section>
+
+<!-- FEATURED COLLECTIONS -->
+<section class="featured">
+    <h2>Our Collections</h2>
+    <div class="collections-grid">
+        {{range .Collections}}
+        <div class="collection-card">
+            <img src="{{.Image}}" alt="{{.Name}}">
+            <div class="card-info">
+                <h3>{{.Name}}</h3>
+                <p>{{.Description}}</p>
+                <a href="/collections" class="btn-outline">Explore</a>
+            </div>
+        </div>
+        {{end}}
+    </div>
+</section>
+
+<!-- CEO SECTION -->
+<section class="ceo-section">
+    <div class="ceo-content">
+        <img src="{{.CEO.Image}}" alt="{{.CEO.Name}}" class="ceo-img">
+        <div class="ceo-text">
+            <h2>{{.CEO.Name}}</h2>
+            <p class="ceo-title">{{.CEO.Title}}</p>
+            <p class="ceo-message">"{{.CEO.Message}}"</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT BANNER -->
+<section class="contact-banner">
+    <h2>Visit Us Today</h2>
+    <p>{{.Contact.Address}}</p>
+    <a href="/contact" class="btn-gold">Get In Touch</a>
+</section>

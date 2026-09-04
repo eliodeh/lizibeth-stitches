@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="/static/images/logo.png" alt="Itua Stitches">
+            <span>Itua Stitches</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/collections">Collections</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- PAGE CONTENT -->
+    <main>
+        {{template "content" .}}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Itua Stitches</h3>
+                <p>"Elegance Redefined"</p>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/collections">Collections</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <div class="footer-contact">
+                <p>{{.Contact.Phone1}}</p>
+                <p>{{.Contact.Email}}</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Itua Stitches. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
