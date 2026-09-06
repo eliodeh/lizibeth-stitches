@@ -1,0 +1,66 @@
+{{define "content"}}
+
+<section class="about-page">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h1>About Us</h1>
+        <p>The story behind Itua Stitches</p>
+    </div>
+
+    <!-- CEO SECTION -->
+    <div class="about-ceo">
+        <div class="ceo-portrait">
+            <img src="{{.CEO.Image}}" alt="{{.CEO.Name}}">
+        </div>
+        <div class="ceo-details">
+            <h2>{{.CEO.Name}}</h2>
+            <p class="ceo-title">{{.CEO.Title}}</p>
+            <p class="ceo-message">"{{.CEO.Message}}"</p>
+        </div>
+    </div>
+
+    <!-- BRAND STORY -->
+    <div class="brand-story">
+        <h2>Our Story</h2>
+        <p>
+            Itua Stitches was born from a deep passion for fashion
+            and a desire to celebrate the African woman.
+            Founded by Elizabeth Ode, we have grown from a small
+            shop in Kubwa Abuja into a brand that women trust
+            for elegance, quality and style.
+        </p>
+        <p>
+            Every piece we create tells a story.
+            From bridal collections to casual wear,
+            evening gowns to accessories,
+            we pour our hearts into every stitch.
+        </p>
+    </div>
+
+    <!-- VALUES SECTION -->
+    <div class="values-section">
+        <h2>Our Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <h3>Quality</h3>
+                <p>Every piece crafted to perfection</p>
+            </div>
+            <div class="value-card">
+                <h3>Elegance</h3>
+                <p>Style that speaks for itself</p>
+            </div>
+            <div class="value-card">
+                <h3>Passion</h3>
+                <p>Love sewn into every stitch</p>
+            </div>
+            <div class="value-card">
+                <h3>Heritage</h3>
+                <p>Celebrating the African woman</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{{end}}

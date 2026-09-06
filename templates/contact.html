@@ -1,0 +1,104 @@
+{{define "content"}}
+
+<section class="contact-page">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h1>Contact Us</h1>
+        <p>We would love to hear from you</p>
+    </div>
+
+    <div class="contact-wrapper">
+
+        <!-- CONTACT INFO -->
+        <div class="contact-info">
+            <h2>Find Us</h2>
+
+            <div class="info-item">
+                <h3>Address</h3>
+                <p>{{.Contact.Address}}</p>
+            </div>
+
+            <div class="info-item">
+                <h3>Phone</h3>
+                <p>{{.Contact.Phone1}}</p>
+                <p>{{.Contact.Phone2}}</p>
+            </div>
+
+            <div class="info-item">
+                <h3>Email</h3>
+                <p>{{.Contact.Email}}</p>
+            </div>
+
+            <div class="info-item">
+                <h3>Opening Hours</h3>
+                <p>Monday - Saturday: 9am - 7pm</p>
+                <p>Sunday: 12pm - 5pm</p>
+            </div>
+
+            <!-- MAP LINK -->
+            <a href="{{.Contact.MapLink}}"
+               target="_blank"
+               class="btn-gold">
+               View On Google Maps
+            </a>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="contact-form">
+            <h2>Send A Message</h2>
+            <form method="POST" action="/contact/send">
+
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text"
+                           name="name"
+                           placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label>Your Phone</label>
+                    <input type="tel"
+                           name="phone"
+                           placeholder="Enter your phone number">
+                </div>
+
+                <div class="form-group">
+                    <label>Your Email</label>
+                    <input type="email"
+                           name="email"
+                           placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label>What Are You Interested In?</label>
+                    <select name="interest">
+                        <option value="">Select collection</option>
+                        <option value="bridal">Bridal Collection</option>
+                        <option value="casual">Casual Collection</option>
+                        <option value="evening">Evening Wears</option>
+                        <option value="date">Date Outfits</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Your Message</label>
+                    <textarea name="message"
+                              rows="5"
+                              placeholder="Tell us what you need">
+                    </textarea>
+                </div>
+
+                <button type="submit" class="btn-gold">
+                    Send Message
+                </button>
+
+            </form>
+        </div>
+
+    </div>
+
+</section>
+
+{{end}}

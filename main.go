@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"html/template"
+	"net/http"
 )
 
 // all page data
@@ -23,15 +23,15 @@ type Collection struct {
 
 type Item struct {
 	Name  string
-	Price  string
-	Image  string
+	Price string
+	Image string
 }
 
 type CEOProfile struct {
-    Name   string
-	Title string
-	Message  string
-	Image    string
+	Name    string
+	Title   string
+	Message string
+	Image   string
 }
 
 type ContactInfo struct {
@@ -55,7 +55,7 @@ func getSiteData() PageData {
 				Items: []Item{
 					{Name: "Royal Bride", Price: "₦150,000", Image: "/static/images/collections/bridal1.jpg"},
 					{Name: "Ivory Dreams", Price: "₦120,000", Image: "/static/images/collections/bridal2.jpg"},
-					{Name: "Golden Veil",  Price: "₦180,000", Image: "/static/images/collections/bridal3.jpg"},
+					{Name: "Golden Veil", Price: "₦180,000", Image: "/static/images/collections/bridal3.jpg"},
 				},
 			},
 			{
@@ -63,9 +63,9 @@ func getSiteData() PageData {
 				Description: "Elegant everyday wear for the modern woman",
 				Image:       "/static/images/collections/casual.jpg",
 				Items: []Item{
-					{Name: "Day Chic",    Price: "₦45,000", Image: "/static/images/collections/casual1.jpg"},
+					{Name: "Day Chic", Price: "₦45,000", Image: "/static/images/collections/casual1.jpg"},
 					{Name: "Urban Grace", Price: "₦55,000", Image: "/static/images/collections/casual2.jpg"},
-					{Name: "City Bloom",  Price: "₦50,000", Image: "/static/images/collections/casual3.jpg"},
+					{Name: "City Bloom", Price: "₦50,000", Image: "/static/images/collections/casual3.jpg"},
 				},
 			},
 			{
@@ -73,9 +73,9 @@ func getSiteData() PageData {
 				Description: "Stunning evening gowns for every occasion",
 				Image:       "/static/images/collections/evening.jpg",
 				Items: []Item{
-					{Name: "Midnight Gold",   Price: "₦95,000",  Image: "/static/images/collections/evening1.jpg"},
-					{Name: "Scarlet Night",   Price: "₦85,000",  Image: "/static/images/collections/evening2.jpg"},
-					{Name: "Diamond Dusk",    Price: "₦110,000", Image: "/static/images/collections/evening3.jpg"},
+					{Name: "Midnight Gold", Price: "₦95,000", Image: "/static/images/collections/evening1.jpg"},
+					{Name: "Scarlet Night", Price: "₦85,000", Image: "/static/images/collections/evening2.jpg"},
+					{Name: "Diamond Dusk", Price: "₦110,000", Image: "/static/images/collections/evening3.jpg"},
 				},
 			},
 			{
@@ -83,13 +83,13 @@ func getSiteData() PageData {
 				Description: "Complete your look with our luxury accessories",
 				Image:       "/static/images/collections/accessories.jpg",
 				Items: []Item{
-					{Name: "Gold Clutch",    Price: "₦25,000", Image: "/static/images/collections/acc1.jpg"},
+					{Name: "Gold Clutch", Price: "₦25,000", Image: "/static/images/collections/acc1.jpg"},
 					{Name: "Pearl Necklace", Price: "₦35,000", Image: "/static/images/collections/acc2.jpg"},
-					{Name: "Silk Scarf",     Price: "₦15,000", Image: "/static/images/collections/acc3.jpg"},
+					{Name: "Silk Scarf", Price: "₦15,000", Image: "/static/images/collections/acc3.jpg"},
 				},
 			},
 		},
-		CEO: CEOProfile {
+		CEO: CEOProfile{
 			Name:    "Elizabeth Ode",
 			Title:   "Founder & CEO",
 			Message: "At Lizz Stitches, we believe every woman deserves to feel elegant. Our designs are crafted with passion, precision and love for the African woman.",
@@ -111,11 +111,18 @@ func renderTemplate(w http.ResponseWriter, tmpl string, data PageData) {
 		"templates/"+tmpl+".html",
 	)
 	if err != nil {
+
 		fmt.Println("Template error:", err)
-		http.Error(w, "Template error", 500)
+		http.Error(w, err.Error(), 500)
 		return
 	}
-	t.ExecuteTemplate(w, "base", data)
+
+	fmt.Println("Executing template:", tmpl)
+
+	err = t.ExecuteTemplate(w, "base", data)
+	if err != nil {
+		fmt.Println("Execute error:", err)
+	}
 }
 
 func handleHome(w http.ResponseWriter, r *http.Request) {
@@ -134,6 +141,30 @@ func handleContact(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "contact", getSiteData())
 }
 
+func handleContactForm(w http.ResponseWriter, r *http.Request) {
+    if r.Method != "POST" {
+        http.Redirect(w, r, "/contact", http.StatusSeeOther)
+        return
+    }
+
+    // read form values
+    name     := r.FormValue("name")
+    phone    := r.FormValue("phone")
+    email    := r.FormValue("email")
+    interest := r.FormValue("interest")
+    message  := r.FormValue("message")
+
+    // print to terminal for now
+    fmt.Println("New enquiry from:", name)
+    fmt.Println("Phone:", phone)
+    fmt.Println("Email:", email)
+    fmt.Println("Interest:", interest)
+    fmt.Println("Message:", message)
+
+    // redirect back to contact page
+    http.Redirect(w, r, "/contact", http.StatusSeeOther)
+}
+
 func main() {
 	// serve static files
 	http.Handle("/static/",
@@ -145,6 +176,7 @@ func main() {
 	http.HandleFunc("/collections", handleCollections)
 	http.HandleFunc("/about", handleAbout)
 	http.HandleFunc("/contact", handleContact)
+	http.HandleFunc("/contact/send", handleContactForm)
 
 	fmt.Println("Lizz Stitches running on http://localhost:8080")
 	http.ListenAndServe(":8080", nil)

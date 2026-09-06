@@ -1,0 +1,39 @@
+{{define "content"}}
+
+<section class="collections-page">
+    <div class="page-header">
+        <h1>Our collections</h1>
+        <p>Discover elegance in every stitch</p>
+    </div>
+
+    {{range .Collections}}
+    <div class="collection-section">
+
+        <div class="collection-header">
+            <h2>{{.Description}}</h2>
+        </div>
+
+        <div class="items-grid">
+            {{range .Items}}
+            <div class="item-card">
+                <div class=""item-image>
+                   <img src="item-overlay">
+                   <div class="item-overlay">
+                       <a href="/contact" class="btn-gold">Order</a>
+                    </div>
+                </div>
+                <div class="item-info">
+                   <h3>{{.Name}}</h3> 
+                   <p class="item-price">{{.Price}}</p> 
+                </div>
+            </div>
+            {{end}} 
+        </div>
+
+    </div>    
+    {{end}} 
+
+</section>
+
+{{end}}
+
