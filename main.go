@@ -4,7 +4,15 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"time"
 )
+
+//global collections store
+var siteCollections []Collection
+
+func init() {
+	siteCollections = getSiteData().Collections
+}
 
 // all page data
 type PageData struct {
@@ -46,16 +54,16 @@ type ContactInfo struct {
 
 func getSiteData() PageData {
 	return PageData{
-		Title: "Lizz Stitches",
+		Title: "Itua Stitches",
 		Collections: []Collection{
 			{
 				Name:        "Bridal Collection",
 				Description: "Exquisite bridal wear for your perfect day",
 				Image:       "/static/images/collections/bridal.jpg",
 				Items: []Item{
-					{Name: "Royal Bride", Price: "₦150,000", Image: "/static/images/collections/bridal1.jpg"},
-					{Name: "Ivory Dreams", Price: "₦120,000", Image: "/static/images/collections/bridal2.jpg"},
-					{Name: "Golden Veil", Price: "₦180,000", Image: "/static/images/collections/bridal3.jpg"},
+					{Name: "studded lace", Price: "₦600,000", Image: "/static/images/collections/bridal1.jpg"},
+					{Name: "receiption gown", Price: "₦450,000", Image: "/static/images/collections/bridal2.jpg"},
+					{Name: "ankara dresses", Price: "₦330,000", Image: "/static/images/collections/bridal3.jpg"},
 				},
 			},
 			{
@@ -63,14 +71,14 @@ func getSiteData() PageData {
 				Description: "Elegant everyday wear for the modern woman",
 				Image:       "/static/images/collections/casual.jpg",
 				Items: []Item{
-					{Name: "Day Chic", Price: "₦45,000", Image: "/static/images/collections/casual1.jpg"},
-					{Name: "Urban Grace", Price: "₦55,000", Image: "/static/images/collections/casual2.jpg"},
-					{Name: "City Bloom", Price: "₦50,000", Image: "/static/images/collections/casual3.jpg"},
+					{Name: "office Chic", Price: "₦45,000", Image: "/static/images/collections/casual1.jpg"},
+					{Name: "Urban beauty", Price: "₦55,000", Image: "/static/images/collections/casual2.jpg"},
+					{Name: "City bloom", Price: "₦50,000", Image: "/static/images/collections/casual3.jpg"},
 				},
 			},
 			{
-				Name:        "Evening Wears",
-				Description: "Stunning evening gowns for every occasion",
+				Name:        "Ready to Wears",
+				Description: "Stunning ready to wear gowns for every occasion",
 				Image:       "/static/images/collections/evening.jpg",
 				Items: []Item{
 					{Name: "Midnight Gold", Price: "₦95,000", Image: "/static/images/collections/evening1.jpg"},
@@ -83,24 +91,23 @@ func getSiteData() PageData {
 				Description: "Complete your look with our luxury accessories",
 				Image:       "/static/images/collections/accessories.jpg",
 				Items: []Item{
-					{Name: "Gold Clutch", Price: "₦25,000", Image: "/static/images/collections/acc1.jpg"},
-					{Name: "Pearl Necklace", Price: "₦35,000", Image: "/static/images/collections/acc2.jpg"},
-					{Name: "Silk Scarf", Price: "₦15,000", Image: "/static/images/collections/acc3.jpg"},
+					{Name: "braclets", Price: "₦25,000", Image: "/static/images/collections/acc1.jpg"},
+					{Name: "Necklace", Price: "₦35,000", Image: "/static/images/collections/acc2.jpg"},
+					{Name: "faciliator", Price: "₦15,000", Image: "/static/images/collections/acc3.jpg"},
 				},
 			},
 		},
 		CEO: CEOProfile{
-			Name:    "Elizabeth Ode",
+			Name:    "Ejembe Itua",
 			Title:   "Founder & CEO",
-			Message: "At Lizz Stitches, we believe every woman deserves to feel elegant. Our designs are crafted with passion, precision and love for the African woman.",
+			Message: "At Itua Stitches, we believe every woman deserves to feel elegant. Our designs are crafted with passion, precision and love for being woman.",
 			Image:   "/static/images/ceo.jpg",
 		},
 		Contact: ContactInfo{
-			Address: "Modern Market Block 5, Shop 12 Akpabio Street, Kubwa Abuja",
-			Phone1:  "+2348125818769",
-			Phone2:  "08138576500",
-			Email:   "odehe359@gmail.com",
-			MapLink: "https://maps.google.com/?q=Kubwa+Abuja",
+			Address: "Gwarinpa. Abuja",
+			Phone1:  "+2349093348066",
+			Email:   "ituastitches@gmail.com",
+			MapLink: "https://maps.google.com/?q=Gwarinpa+Abuja",
 		},
 	}
 }
@@ -147,6 +154,20 @@ func handleContactForm(w http.ResponseWriter, r *http.Request) {
         return
     }
 
+	// save message
+	contactMessages = append(contactMessages, ContactMessage{
+		Name:     r.FormValue("name"),
+		Phone:    r.FormValue("phone"),
+		Email:    r.FormValue("email"),
+		Interest: r.FormValue("interest"),
+        Message:  r.FormValue("message"),
+		Date:     time.Now().Format("14 sep 2026 10:47"),
+	})
+
+	fmt.Println("New message from:", r.FormValue("name"))
+	http.Redirect(w, r, "/contact", http.StatusSeeOther)
+
+
     // read form values
     name     := r.FormValue("name")
     phone    := r.FormValue("phone")
@@ -171,13 +192,21 @@ func main() {
 		http.StripPrefix("/static/",
 			http.FileServer(http.Dir("static"))))
 
-	// routes
+	//  puplic routes
 	http.HandleFunc("/", handleHome)
 	http.HandleFunc("/collections", handleCollections)
 	http.HandleFunc("/about", handleAbout)
 	http.HandleFunc("/contact", handleContact)
 	http.HandleFunc("/contact/send", handleContactForm)
 
-	fmt.Println("Lizz Stitches running on http://localhost:8080")
+    // admin routes
+	http.HandleFunc("/admin/login", handleAdminLogin)
+	http.HandleFunc("/admin/", handleAdminDashboard)
+	http.HandleFunc("/admin/colles/add", handleAdminAddItem)
+	http.HandleFunc("/admin/items/delete", handleAdminDeleteItem)
+	http.HandleFunc("/admin/message", handleAdminMessages)
+	http.HandleFunc("/admin/logout", handleAdminLogout)
+
+	fmt.Println("itua Stitches running on http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }

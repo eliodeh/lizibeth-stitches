@@ -1,0 +1,75 @@
+{{define "admin-content"}}
+
+<div class="dashboard">
+
+    <!-- WELCOME -->
+    <div class="dashboard-header">
+        <h1>Welcome, {{.Username}}</h1>
+        <p>Manage your Itua Stitches store</p>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h2>{{.Stats.TotalCollections}}</h2>
+            <p>Collections</p>
+        </div>
+        <div class="stat-card">
+            <h2>{{.Stats.TotalItems}}</h2>
+            <p>Total Items</p>
+        </div>
+        <div class="stat-card">
+            <h2>{{.Stats.TotalMessages}}</h2>
+            <p>Messages</p>
+        </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="quick-links">
+        <h2>Quick Actions</h2>
+        <div class="links-grid">
+            <a href="/admin/collections" class="quick-card">
+                <h3>👗 Manage Collections</h3>
+                <p>Add edit or delete items</p>
+            </a>
+            <a href="/admin/messages" class="quick-card">
+                <h3>💬 View Messages</h3>
+                <p>See customer enquiries</p>
+            </a>
+            <a href="/" target="_blank" class="quick-card">
+                <h3>🌐 View Website</h3>
+                <p>See live website</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- RECENT MESSAGES -->
+    {{if .Messages}}
+    <div class="recent-messages">
+        <h2>Recent Messages</h2>
+        <table class="messages-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Interest</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range .Messages}}
+                <tr>
+                    <td>{{.Name}}</td>
+                    <td>{{.Phone}}</td>
+                    <td>{{.Interest}}</td>
+                    <td>{{.Date}}</td>
+                </tr>
+                {{end}}
+            </tbody>
+        </table>
+    </div>
+    {{end}}
+
+</div>
+
+{{end}}

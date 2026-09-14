@@ -1,0 +1,38 @@
+{{define "admin-base"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itua Stitches Admin</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+
+{{if .Username}}
+<!-- ADMIN NAVBAR -->
+<nav class="admin-nav">
+    <div class="admin-logo">
+        <span>⚙ Itua Stitches Admin</span>
+    </div>
+    <div class="admin-nav-links">
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/collections">Collections</a>
+        <a href="/admin/messages">Messages</a>
+        <a href="/" target="_blank">View Site</a>
+        <a href="/admin/logout" class="logout-btn">Logout</a>
+    </div>
+    <div class="admin-user">
+        👤 {{.Username}}
+    </div>
+</nav>
+{{end}}
+
+<!-- PAGE CONTENT -->
+<main class="admin-main">
+    {{template "admin-content" .}}
+</main>
+
+</body>
+</html>
+{{end}}

@@ -1,0 +1,38 @@
+{{define "admin-content"}}
+
+<div class="admin-messages">
+
+    <div class="page-title">
+        <h1>Customer Messages</h1>
+        <p>{{.Stats.TotalMessages}} total messages</p>
+    </div>
+
+    {{if .Messages}}
+    <div class="messages-list">
+        {{range .Messages}}
+        <div class="message-card">
+            <div class="message-header">
+                <h3>{{.Name}}</h3>
+                <span class="message-date">{{.Date}}</span>
+            </div>
+            <div class="message-details">
+                <p><strong>Phone:</strong> {{.Phone}}</p>
+                <p><strong>Email:</strong> {{.Email}}</p>
+                <p><strong>Interest:</strong> {{.Interest}}</p>
+            </div>
+            <div class="message-body">
+                <p>{{.Message}}</p>
+            </div>
+        </div>
+        {{end}}
+    </div>
+
+    {{else}}
+    <div class="no-messages">
+        <p>No messages yet</p>
+    </div>
+    {{end}}
+
+</div>
+
+{{end}}

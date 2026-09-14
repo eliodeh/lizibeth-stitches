@@ -1,0 +1,103 @@
+{{define "admin-content"}}
+
+<div class="admin-collections">
+
+    <div class="page-title">
+        <h1>Manage Collections</h1>
+    </div>
+
+    {{range $ci, $collection := .Collections}}
+    <div class="collection-block">
+
+        <!-- COLLECTION TITLE -->
+        <div class="collection-title">
+            <h2>{{$collection.Name}}</h2>
+            <span>{{len $collection.Items}} items</span>
+        </div>
+
+        <!-- ITEMS TABLE -->
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range $ii, $item := $collection.Items}}
+                <tr>
+                    <td>
+                        <img src="{{$item.Image}}"
+                             alt="{{$item.Name}}"
+                             class="item-thumb">
+                    </td>
+                    <td>{{$item.Name}}</td>
+                    <td>{{$item.Price}}</td>
+                    <td>
+                        <form method="POST"
+                              action="/admin/items/delete">
+                            <input type="hidden"
+                                   name="collection_index"
+                                   value="{{$ci}}">
+                            <input type="hidden"
+                                   name="item_index"
+                                   value="{{$ii}}">
+                            <button type="submit"
+                                    class="delete-btn"
+                                    onclick="return confirm('Delete this item?')">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {{end}}
+            </tbody>
+        </table>
+
+        <!-- ADD NEW ITEM FORM -->
+        <div class="add-item-form">
+            <h3>Add New Item To {{$collection.Name}}</h3>
+            <form method="POST" action="/admin/items/add">
+                <input type="hidden"
+                       name="collection_index"
+                       value="{{$ci}}">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Item Name</label>
+                        <input type="text"
+                               name="name"
+                               placeholder="e.g. Royal Gold"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="text"
+                               name="price"
+                               placeholder="e.g. ₦75,000"
+                               required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="text"
+                           name="image"
+                           placeholder="https://images.unsplash.com/..."
+                           required>
+                </div>
+
+                <button type="submit" class="add-btn">
+                    Add Item
+                </button>
+            </form>
+        </div>
+
+    </div>
+    {{end}}
+
+</div>
+
+{{end}}
