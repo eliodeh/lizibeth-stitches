@@ -156,33 +156,18 @@ func handleContactForm(w http.ResponseWriter, r *http.Request) {
 
 	// save message
 	contactMessages = append(contactMessages, ContactMessage{
-		Name:     r.FormValue("name"),
-		Phone:    r.FormValue("phone"),
-		Email:    r.FormValue("email"),
-		Interest: r.FormValue("interest"),
+        Name:     r.FormValue("name"),
+        Phone:    r.FormValue("phone"),
+        Email:    r.FormValue("email"),
+        Interest: r.FormValue("interest"),
         Message:  r.FormValue("message"),
-		Date:     time.Now().Format("14 sep 2026 10:47"),
-	})
+        Date:     time.Now().Format("02 Jan 2006 15:04"),
+    })
 
-	fmt.Println("New message from:", r.FormValue("name"))
-	http.Redirect(w, r, "/contact", http.StatusSeeOther)
+    // print to terminal
+    fmt.Println("New message from:", r.FormValue("name"))
 
-
-    // read form values
-    name     := r.FormValue("name")
-    phone    := r.FormValue("phone")
-    email    := r.FormValue("email")
-    interest := r.FormValue("interest")
-    message  := r.FormValue("message")
-
-    // print to terminal for now
-    fmt.Println("New enquiry from:", name)
-    fmt.Println("Phone:", phone)
-    fmt.Println("Email:", email)
-    fmt.Println("Interest:", interest)
-    fmt.Println("Message:", message)
-
-    // redirect back to contact page
+    // redirect ONCE only
     http.Redirect(w, r, "/contact", http.StatusSeeOther)
 }
 
@@ -198,13 +183,23 @@ func main() {
 	http.HandleFunc("/about", handleAbout)
 	http.HandleFunc("/contact", handleContact)
 	http.HandleFunc("/contact/send", handleContactForm)
+    
+	// booking routes
+    http.HandleFunc("/booking", handleBookingHome)
+	http.HandleFunc("/booking/new", handleNewBooking)
+	http.HandleFunc("/booking/slots", handleGetSlots)
+	http.HandleFunc("/bookingreschedule", handleReschedule)
 
     // admin routes
 	http.HandleFunc("/admin/login", handleAdminLogin)
 	http.HandleFunc("/admin/", handleAdminDashboard)
+	http.HandleFunc("/admin/", handleCollections)
 	http.HandleFunc("/admin/colles/add", handleAdminAddItem)
 	http.HandleFunc("/admin/items/delete", handleAdminDeleteItem)
 	http.HandleFunc("/admin/message", handleAdminMessages)
+	http.HandleFunc("/admin/", handleAdminBookings)
+	http.HandleFunc("/admin/", handleApproveBooking)
+	http.HandleFunc("/admin/", handleCancelBooking)
 	http.HandleFunc("/admin/logout", handleAdminLogout)
 
 	fmt.Println("itua Stitches running on http://localhost:8080")

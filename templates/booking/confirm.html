@@ -1,0 +1,95 @@
+{{define "booking-content"}}
+
+<section class="confirm-page">
+
+    {{if .Success}}
+    <div class="success-banner">
+        ✅ {{.Success}}
+    </div>
+    {{end}}
+
+    <div class="confirm-card">
+
+        <div class="confirm-header">
+            <h1>Booking {{.Booking.Status}}</h1>
+            <p class="booking-id">ID: {{.Booking.ID}}</p>
+        </div>
+
+        <div class="confirm-details">
+
+            <div class="detail-row">
+                <span class="detail-label">Service</span>
+                <span class="detail-value">
+                    {{if eq .Booking.Service "consultation"}}
+                        👗 Consultation
+                    {{else}}
+                        ✂️ Dress Fitting
+                    {{end}}
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Date</span>
+                <span class="detail-value">{{.Booking.Date}}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Time</span>
+                <span class="detail-value">{{.Booking.TimeSlot}}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Name</span>
+                <span class="detail-value">{{.Booking.CustomerName}}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Phone</span>
+                <span class="detail-value">{{.Booking.Phone}}</span>
+            </div>
+
+            {{if .Booking.Notes}}
+            <div class="detail-row">
+                <span class="detail-label">Notes</span>
+                <span class="detail-value">{{.Booking.Notes}}</span>
+            </div>
+            {{end}}
+
+            <div class="detail-row status-row">
+                <span class="detail-label">Status</span>
+                <span class="status-badge {{.Booking.Status}}">
+                    {{.Booking.Status}}
+                </span>
+            </div>
+
+        </div>
+
+        <div class="confirm-actions">
+            <a href="/booking/reschedule?id={{.Booking.ID}}"
+               class="reschedule-btn">
+               Reschedule
+            </a>
+            <a href="/booking" class="btn-gold">
+                Book Another
+            </a>
+            <a href="/" class="home-btn">
+                Back To Home
+            </a>
+        </div>
+
+        <div class="confirm-note">
+            <p>
+                Please save your Booking ID: <strong>{{.Booking.ID}}</strong>
+                You will need it to reschedule your appointment.
+            </p>
+            <p>
+                We will contact you on <strong>{{.Booking.Phone}}</strong>
+                to confirm your appointment.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+{{end}}

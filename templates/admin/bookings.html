@@ -1,0 +1,81 @@
+{{define "admin-content"}}
+
+<div class="admin-bookings">
+
+    <div class="page-title">
+        <h1>Bookings</h1>
+        <p>{{.Stats.TotalBookings}} total bookings</p>
+    </div>
+
+    {{if .Bookings}}
+    <table class="bookings-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{range .Bookings}}
+            <tr>
+                <td>{{.ID}}</td>
+                <td>{{.CustomerName}}</td>
+                <td>{{.Phone}}</td>
+                <td>{{.Service}}</td>
+                <td>{{.Date}}</td>
+                <td>{{.TimeSlot}}</td>
+                <td>
+                    <span class="status-badge {{.Status}}">
+                        {{.Status}}
+                    </span>
+                </td>
+                <td class="action-btns">
+                    {{if eq .Status "pending"}}
+                    <form method="POST"
+                          action="/admin/bookings/approve"
+                          style="display:inline">
+                        <input type="hidden"
+                               name="booking_id"
+                               value="{{.ID}}">
+                        <button type="submit"
+                                class="approve-btn">
+                            Approve
+                        </button>
+                    </form>
+                    {{end}}
+
+                    {{if ne .Status "cancelled"}}
+                    <form method="POST"
+                          action="/admin/bookings/cancel"
+                          style="display:inline">
+                        <input type="hidden"
+                               name="booking_id"
+                               value="{{.ID}}">
+                        <button type="submit"
+                                class="cancel-btn"
+                                onclick="return confirm('Cancel this booking?')">
+                            Cancel
+                        </button>
+                    </form>
+                    {{end}}
+                </td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+
+    {{else}}
+    <div class="no-bookings">
+        <p>No bookings yet</p>
+    </div>
+    {{end}}
+
+</div>
+
+{{end}}

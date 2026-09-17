@@ -1,0 +1,86 @@
+{{define "booking-content"}}
+
+<section class="booking-hero">
+    <div class="booking-hero-content">
+        <h1>Book An Appointment</h1>
+        <p>"Let us create something beautiful together"</p>
+    </div>
+</section>
+
+<section class="booking-services">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+
+        <div class="service-card">
+            <div class="service-icon">👗</div>
+            <h3>Consultation</h3>
+            <p class="service-duration">⏱ 1 hour 30 minutes</p>
+            <p class="service-price">₦10,000</p>
+            <p class="service-desc">
+                Sit down with Elizabeth to discuss your perfect outfit.
+                We will talk about style, fabric, color and design.
+            </p>
+            <a href="/booking/new?service=consultation"
+               class="btn-gold">
+               Book Consultation
+            </a>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">✂️</div>
+            <h3>Dress Fitting</h3>
+            <p class="service-duration">⏱ 2 hours</p>
+            <p class="service-price">₦15,000</p>
+            <p class="service-desc">
+                Come in and try on your outfit.
+                We will make adjustments to ensure
+                the perfect fit just for you.
+            </p>
+            <a href="/booking/new?service=fitting"
+               class="btn-gold">
+               Book Fitting
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<section class="booking-info">
+    <div class="info-grid">
+        <div class="info-item">
+            <h3>📅 Working Days</h3>
+            <p>Monday to Saturday</p>
+        </div>
+        <div class="info-item">
+            <h3>⏰ Working Hours</h3>
+            <p>9:00 AM to 6:00 PM</p>
+        </div>
+        <div class="info-item">
+            <h3>📍 Location</h3>
+            <p>Modern Market Block 5
+               Shop 12 Akpabio Street
+               Kubwa Abuja</p>
+        </div>
+        <div class="info-item">
+            <h3>📞 Questions?</h3>
+            <p>+2348125818769</p>
+        </div>
+    </div>
+</section>
+
+<section class="reschedule-section">
+    <h2>Need To Reschedule?</h2>
+    <p>Enter your booking ID to reschedule your appointment</p>
+    <form method="GET" action="/booking/reschedule"
+          class="reschedule-form">
+        <input type="text"
+               name="id"
+               placeholder="Enter Booking ID e.g ITUA-1"
+               required>
+        <button type="submit" class="btn-gold">
+            Find My Booking
+        </button>
+    </form>
+</section>
+
+{{end}}

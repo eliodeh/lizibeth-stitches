@@ -1,0 +1,79 @@
+{{define "booking-content"}}
+
+<section class="reschedule-page">
+
+    <div class="booking-header">
+        <h1>Reschedule Appointment</h1>
+        <p>Choose a new date and time</p>
+    </div>
+
+    {{if .Error}}
+    <div class="error-box">
+        ⚠ {{.Error}}
+    </div>
+    {{end}}
+
+    {{if .Booking.ID}}
+    <div class="current-booking">
+        <h2>Your Current Booking</h2>
+        <div class="current-details">
+            <p><strong>ID:</strong> {{.Booking.ID}}</p>
+            <p><strong>Service:</strong> {{.Booking.Service}}</p>
+            <p><strong>Current Date:</strong> {{.Booking.Date}}</p>
+            <p><strong>Current Time:</strong> {{.Booking.TimeSlot}}</p>
+        </div>
+    </div>
+
+    <form method="POST"
+          action="/booking/reschedule"
+          class="booking-form">
+
+        <input type="hidden"
+               name="booking_id"
+               value="{{.Booking.ID}}">
+
+        <div class="form-section">
+            <h2>Choose New Date</h2>
+            <div class="form-group">
+                <label>New Date</label>
+                <input type="date"
+                       name="date"
+                       id="booking-date"
+                       required>
+                <p class="form-hint">
+                    Monday to Saturday only
+                </p>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Choose New Time</h2>
+            <div class="form-group">
+                <label>Available Time Slots</label>
+                <select name="time_slot"
+                        id="time-slot"
+                        required>
+                    <option value="">Select date first</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="book-btn">
+            Confirm Reschedule
+        </button>
+
+    </form>
+
+    {{else}}
+    <div class="not-found">
+        <p>Booking not found.</p>
+        <p>Please check your booking ID and try again.</p>
+        <a href="/booking" class="btn-gold">
+            Go Back To Booking
+        </a>
+    </div>
+    {{end}}
+
+</section>
+
+{{end}}

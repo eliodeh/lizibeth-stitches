@@ -1,0 +1,589 @@
+/* ── BOOKING HERO ── */
+.booking-hero {
+    height: 40vh;
+    background: linear-gradient(
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.6)
+    ),
+    url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.booking-hero-content h1 {
+    font-size: 3rem;
+    color: var(--white);
+    letter-spacing: 6px;
+    margin-bottom: 15px;
+}
+
+.booking-hero-content p {
+    color: var(--gold);
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+/* ── SERVICES ── */
+.booking-services {
+    padding: 80px 60px;
+    text-align: center;
+}
+
+.booking-services h2 {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    margin-bottom: 50px;
+}
+
+.booking-services h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: var(--gold);
+    margin: 15px auto 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background-color: var(--white);
+    border: 1px solid var(--gold);
+    padding: 40px 30px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(212,175,55,0.2);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.service-duration {
+    color: var(--dark-grey);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.service-price {
+    color: var(--gold);
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.service-desc {
+    color: var(--dark-grey);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* ── BOOKING INFO ── */
+.booking-info {
+    padding: 60px;
+    background-color: var(--black);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.info-grid .info-item h3 {
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.info-grid .info-item p {
+    color: var(--white);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ── RESCHEDULE SECTION ── */
+.reschedule-section {
+    padding: 60px;
+    text-align: center;
+    background-color: var(--light-grey);
+}
+
+.reschedule-section h2 {
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.reschedule-section p {
+    color: var(--dark-grey);
+    margin-bottom: 30px;
+}
+
+.reschedule-form {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.reschedule-form input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid var(--gold);
+    font-family: 'Georgia', serif;
+    outline: none;
+}
+
+/* ── BOOKING FORM ── */
+.new-booking {
+    padding: 60px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.booking-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.booking-header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.booking-header p {
+    color: var(--dark-grey);
+    font-style: italic;
+}
+
+.error-box {
+    background-color: #fde8e8;
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    border-radius: 4px;
+}
+
+.form-section {
+    margin-bottom: 40px;
+    padding: 30px;
+    border: 1px solid var(--light-grey);
+    background-color: var(--white);
+}
+
+.form-section h2 {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: var(--black);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gold);
+}
+
+/* ── SERVICE OPTIONS ── */
+.service-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.service-option {
+    cursor: pointer;
+}
+
+.service-option input {
+    display: none;
+}
+
+.option-card {
+    border: 2px solid var(--light-grey);
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.service-option input:checked + .option-card {
+    border-color: var(--gold);
+    background-color: #fdf8e8;
+}
+
+.option-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.option-card p {
+    color: var(--dark-grey);
+    font-size: 0.85rem;
+}
+
+/* ── FORM GROUPS ── */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--black);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--gold);
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    box-shadow: 0 0 8px rgba(212,175,55,0.4);
+}
+
+.form-hint {
+    font-size: 0.8rem;
+    color: var(--dark-grey);
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* ── BOOK BUTTON ── */
+.book-btn {
+    width: 100%;
+    padding: 18px;
+    background-color: var(--gold);
+    color: var(--black);
+    border: none;
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 20px;
+}
+
+.book-btn:hover {
+    background-color: var(--black);
+    color: var(--gold);
+}
+
+/* ── CONFIRM PAGE ── */
+.confirm-page {
+    padding: 60px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.success-banner {
+    background-color: #e8fde8;
+    border: 1px solid #2ecc71;
+    color: #27ae60;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.confirm-card {
+    background-color: var(--white);
+    border: 2px solid var(--gold);
+    padding: 40px;
+}
+
+.confirm-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--gold);
+}
+
+.confirm-header h1 {
+    font-size: 2rem;
+    letter-spacing: 3px;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+.booking-id {
+    color: var(--gold);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.confirm-details {
+    margin-bottom: 30px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.detail-label {
+    color: var(--dark-grey);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.detail-value {
+    font-weight: bold;
+    text-align: right;
+}
+
+/* ── STATUS BADGES ── */
+.status-badge {
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.status-badge.pending {
+    background-color: #fef9e7;
+    color: #d4ac0d;
+    border: 1px solid #d4ac0d;
+}
+
+.status-badge.approved {
+    background-color: #e8fde8;
+    color: #27ae60;
+    border: 1px solid #27ae60;
+}
+
+.status-badge.cancelled {
+    background-color: #fde8e8;
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+}
+
+.status-badge.rescheduled {
+    background-color: #e8f4fd;
+    color: #2980b9;
+    border: 1px solid #2980b9;
+}
+
+/* ── CONFIRM ACTIONS ── */
+.confirm-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.reschedule-btn {
+    padding: 12px 25px;
+    border: 2px solid var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.reschedule-btn:hover {
+    background-color: var(--gold);
+}
+
+.home-btn {
+    padding: 12px 25px;
+    border: 2px solid var(--black);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.home-btn:hover {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.confirm-note {
+    background-color: var(--light-grey);
+    padding: 20px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--dark-grey);
+}
+
+.confirm-note p {
+    margin-bottom: 8px;
+}
+
+/* ── ADMIN BOOKINGS TABLE ── */
+.bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white);
+}
+
+.bookings-table th {
+    background-color: var(--black);
+    color: var(--gold);
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.bookings-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--light-grey);
+    font-size: 0.9rem;
+}
+
+.bookings-table tr:hover td {
+    background-color: var(--light-grey);
+}
+
+.approve-btn {
+    background-color: #2ecc71;
+    color: var(--white);
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    transition: opacity 0.3s;
+}
+
+.approve-btn:hover {
+    opacity: 0.8;
+}
+
+.cancel-btn {
+    background-color: #e74c3c;
+    color: var(--white);
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: opacity 0.3s;
+}
+
+.cancel-btn:hover {
+    opacity: 0.8;
+}
+
+.no-bookings {
+    text-align: center;
+    padding: 60px;
+    color: var(--dark-grey);
+    background-color: var(--white);
+    border: 1px solid var(--gold);
+}
+
+/* ── RESCHEDULE PAGE ── */
+.reschedule-page {
+    padding: 60px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.current-booking {
+    background-color: var(--light-grey);
+    border: 1px solid var(--gold);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.current-booking h2 {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: var(--gold);
+}
+
+.current-details p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: var(--dark-grey);
+}
+
+.not-found {
+    text-align: center;
+    padding: 60px;
+    color: var(--dark-grey);
+}
+
+.not-found p {
+    margin-bottom: 10px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-options {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .confirm-actions {
+        flex-direction: column;
+    }
+
+    .new-booking {
+        padding: 30px 20px;
+    }
+
+    .booking-info {
+        padding: 40px 20px;
+    }
+}

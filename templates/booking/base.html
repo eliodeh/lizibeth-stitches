@@ -1,0 +1,59 @@
+{{define "booking-base"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Itua Stitches</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/booking.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span>Itua Stitches</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/collections">Collections</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/booking">Book Appointment</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+        <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/collections">Collections</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/booking">Book Appointment</a></li>  ← ADD THIS
+    <li><a href="/contact">Contact</a></li>
+</ul>
+    </nav>
+
+    <!-- CONTENT -->
+    <main>
+        {{template "booking-content" .}}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Itua Stitches</h3>
+                <p>"Elegance Redefined"</p>
+            </div>
+            <div class="footer-contact">
+                <p>+2348125818769</p>
+                <p>odehe359@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Itua Stitches. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/booking.js"></script>
+</body>
+</html>
+{{end}}

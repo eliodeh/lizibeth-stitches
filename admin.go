@@ -12,6 +12,7 @@ type AdminData struct {
     Username    string
     Collections []Collection
     Messages    []ContactMessage
+    Bookings    []Booking
     Stats       AdminStats
     Error       string
     Success     string
@@ -30,6 +31,7 @@ type AdminStats struct {
     TotalCollections int
     TotalItems       int
     TotalMessages    int
+    TotalBookings    int
 }
 
 // store messages in memory
@@ -122,6 +124,7 @@ func handleAdminDashboard(w http.ResponseWriter, r *http.Request) {
         Username:    session.Username,
         Collections: data.Collections,
         Messages:    contactMessages,
+        Bookings:    bookings,
         Stats: AdminStats{
             TotalCollections: len(data.Collections),
             TotalItems:       totalItems,
