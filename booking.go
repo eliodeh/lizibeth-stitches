@@ -140,6 +140,7 @@ func isSlotTaken(date, timeSlot, service string) bool {
     for _, b := range bookings {
         if b.Date == date &&
             b.TimeSlot == timeSlot &&
+            b.Service == service &&
             b.Status != "cancelled" {
             return true
         }
