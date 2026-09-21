@@ -1,0 +1,7 @@
+[build]
+builder = "dockerfile"
+dockerfilepath = "dockerfile"
+
+[deploy]
+startcommand = "./main"
+restartcommand = "on_failure"
