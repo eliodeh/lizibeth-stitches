@@ -1,34 +1,33 @@
 package main
 import (
-    "crypto/sha256"
-    "fmt"
+    "crypto/rand"
+    "encoding/base64"
+    "golang.org/x/crypto/bcrypt"
     "net/http"
     "sync"
     "time"
 )
 
-// admin credentials
-const (
-    AdminUsername = "Ejembe Itua"
-    AdminPassword = "123456789Eli."
-)
-
-// session store
-var (
-    sessions = map[string]Session{}
-    mu       sync.Mutex
-)
-
-type Session struct {
-    Username  string
-    ExpiresAt time.Time
+// generate a secure random session token
+func generateSessionToken() (string, error) {
+    b := make([]byte, 32)
+    _, err := rand.Read(b)
+    if err != nil {
+        return "", err
+    }
+    return base64.URLEncoding.EncodeToString(b), nil
 }
 
-// hash password for security
-func hashPassword(password string) string {
-    h := sha256.New()
-    h.Write([]byte(password))
-    return fmt.Sprintf("%x", h.Sum(nil))
+// authentication middleware
+func requireAuth(next http.HandlerFunc) http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        _, valid := getSession(r)
+        if !valid {
+            http.Redirect(w, r, "/admin/login", http.StatusSeeOther)
+            return
+        }
+        next(w, r)
+    }
 }
 
 // create a new session

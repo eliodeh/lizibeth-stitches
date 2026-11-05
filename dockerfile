@@ -1,8 +1,8 @@
-FROM golang:1.22-alpine AS builder
+FROM golang:1.26-alpine AS builder
 
 WORKDIR /app
 
-COPY go.mod ./
+COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
@@ -16,8 +16,10 @@ WORKDIR /app
 COPY --from=builder /app/main .
 COPY --from=builder /app/templates ./templates
 COPY --from=builder /app/static ./static
-COPY --from=builder /app/banners ./banners
+COPY --from=builder /app/js ./js
+COPY --from=builder /app/images ./images
 
+ENV PORT=8080
 EXPOSE 8080
 
 CMD ["./main"]

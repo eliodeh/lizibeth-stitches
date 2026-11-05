@@ -36,6 +36,19 @@
                     </span>
                 </td>
                 <td class="action-btns">
+                    <form method="POST"
+                          action="/admin/bookings/reschedule"
+                          style="display:inline">
+                        <input type="hidden"
+                               name="booking_id"
+                               value="{{.ID}}">
+                        <input type="date" name="date" required>
+                        <input type="text" name="time_slot" placeholder="e.g. 09:00 AM" required>
+                        <button type="submit" class="reschedule-btn">
+                            Reschedule
+                        </button>
+                    </form>
+
                     {{if eq .Status "pending"}}
                     <form method="POST"
                           action="/admin/bookings/approve"

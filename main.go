@@ -178,8 +178,25 @@ func main() {
 		http.StripPrefix("/static/",
 			http.FileServer(http.Dir("static"))))
 
-	//  puplic routes
-	http.HandleFunc("/", handleHome)
+// Custom 404 handler
+func handleNotFound(w http.ResponseWriter, r *http.Request) {
+    http.Error(w, "Page Not Found", http.StatusNotFound)
+}
+
+func main() {
+	// ... (routes)
+    
+    // Register custom 404
+    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        if r.URL.Path != "/" {
+            handleNotFound(w, r)
+            return
+        }
+        handleHome(w, r)
+    })
+    
+    // ...
+}
 	http.HandleFunc("/collections", handleCollections)
 	http.HandleFunc("/about", handleAbout)
 	http.HandleFunc("/contact", handleContact)
@@ -192,19 +209,18 @@ func main() {
 	http.HandleFunc("/bookingreschedule", handleReschedule)
 
     // admin routes
-	http.HandleFunc("/admin/login", handleAdminLogin)
-	http.HandleFunc("/admin/", handleAdminDashboard)
-	http.HandleFunc("/admin/collections", handleAdminCollections)
-	http.HandleFunc("/admin/items/add", handleAdminAddItem)
-	http.HandleFunc("/admin/items/delete", handleAdminDeleteItem)
-	http.HandleFunc("/admin/messages", handleAdminMessages)
-	http.HandleFunc("/admin/bookings", handleAdminBookings)
-	http.HandleFunc("/admin/bookings/approve", handleApproveBooking)
-	http.HandleFunc("/admin/bookingscancel", handleCancelBooking)
-	http.HandleFunc("/admin/logout", handleAdminLogout)
-
-	fmt.Println("itua Stitches running on http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+    http.HandleFunc("/admin/login", handleAdminLogin)
+    http.HandleFunc("/admin/upload", requireAuth(handleImageUpload))
+    http.HandleFunc("/admin/", requireAuth(handleAdminDashboard))
+    http.HandleFunc("/admin/collections", requireAuth(handleAdminCollections))
+    http.HandleFunc("/admin/items/add", requireAuth(handleAdminAddItem))
+    http.HandleFunc("/admin/items/delete", requireAuth(handleAdminDeleteItem))
+    http.HandleFunc("/admin/messages", requireAuth(handleAdminMessages))
+    http.HandleFunc("/admin/bookings", requireAuth(handleAdminBookings))
+    http.HandleFunc("/admin/bookings/approve", requireAuth(handleApproveBooking))
+    http.HandleFunc("/admin/bookings/reschedule", requireAuth(handleRescheduleBooking))
+    http.HandleFunc("/admin/bookingscancel", requireAuth(handleCancelBooking))
+    http.HandleFunc("/admin/logout", requireAuth(handleAdminLogout))
 
 	port := os.Getenv("PORT")
 	if port == "" {

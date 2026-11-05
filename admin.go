@@ -65,9 +65,21 @@ func handleAdminLogin(w http.ResponseWriter, r *http.Request) {
         password := r.FormValue("password")
 
         // check credentials
-        if username == AdminUsername && password == AdminPassword {
-            // create session
-            sessionID := createSession(username)
+        if username == AdminUsername && checkPasswordHash(password, "$2a$10$R9h/cIPz0gi.URNNX3kh2OPST9/zBkqquzaQA0m.pXy944XnZg0T6") {
+            // generate secure session
+            sessionID, err := generateSessionToken()
+            if err != nil {
+                http.Error(w, "Error generating session", 500)
+                return
+            }
+
+            // store session
+            mu.Lock()
+            sessions[sessionID] = Session{
+                Username:  username,
+                ExpiresAt: time.Now().Add(24 * time.Hour),
+            }
+            mu.Unlock()
 
             // set cookie
             http.SetCookie(w, &http.Cookie{
