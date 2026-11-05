@@ -21,9 +21,15 @@ A Go-based web application built for managing the operations of "Itua Stitches,"
 2. Clone this repository.
 3. Run the application:
    ```bash
-   go run main.go
+   go run .
    ```
+   *Note: On the first run, the application will automatically initialize the `lizibeth.db` SQLite file in the project root.*
 4. Access the application at `http://localhost:8080`.
+
+## Admin Login
+- The admin dashboard is accessible at `/admin/`.
+- Access is protected by `bcrypt` password hashing and secure session tokens generated with `crypto/rand`.
+- Default credentials are provided in the source code; ensure you update the hash for production environments.
 
 ## Technical Details
 - **Database:** SQLite (using `modernc.org/sqlite` for CGO-free portability).
